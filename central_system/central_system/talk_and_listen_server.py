@@ -72,7 +72,7 @@ class MyApp(App):
 def main(args=None):
     rclpy.init(args=args)
 
-    start(MyApp, port=8080, start_browser=False)
+    start(MyApp, address='0.0.0.0', port=8080, start_browser=False)
 
 
 if __name__ == '__main__':
