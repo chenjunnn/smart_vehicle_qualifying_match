@@ -12,7 +12,7 @@
 
 ### 主要思路
 
-1. 使用 rclpy 创建一个节点用于和 ROS2 系统交互，负责 subscribe ROS的消息，以及将 web 页面的文本输入以 `std_msgs/msg/String` 的消息类型发布出去
+1. 使用 rclpy 创建一个节点用于和 ROS2 系统交互，负责订阅 ROS 的消息，以及将 web 页面的文本输入以 `std_msgs/msg/String` 的消息类型发布出去
 
 2. 使用 remi 创建一个网页端的 GUI，使得任何装有浏览器的设备都可与之交互。这个 GUI 界面主要包含了一个 label 用于显示 server 端的发布的数据，一个文本输入框用于输入向 server 发布的数据，一个按钮用于触发发布事件。
 
