@@ -1,3 +1,6 @@
+# Copyright (c) 2022 ChenJun
+# Licensed under the MIT License.
+
 FROM ros:galactic
 
 # create workspace
