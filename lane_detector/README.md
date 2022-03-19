@@ -17,7 +17,7 @@ ros2 launch lane_detector detector.launch.py video_path:=${YOUR_VIDEO_PATH}
 
 ## Config files
 
-~/config/default.yaml:
+[~/config/default.yaml](config/default.yaml):
 
 - lower_boundary: HLS的最小值
 
