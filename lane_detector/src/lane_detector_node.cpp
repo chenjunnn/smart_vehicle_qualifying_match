@@ -7,6 +7,7 @@
 #include <rclcpp/logging.hpp>
 #include <string>
 #include <thread>
+#include <vector>
 
 #include "lane_detector/lane_detector.hpp"
 #include "rclcpp/rclcpp.hpp"
@@ -17,13 +18,25 @@ namespace lane_detector
 class LaneDetectorNode : public rclcpp::Node
 {
 public:
-  LaneDetectorNode(const rclcpp::NodeOptions & options) : Node("lane_detector_node", options)
+  LaneDetectorNode(const rclcpp::NodeOptions & options) : Node("lane_detector", options)
   {
     RCLCPP_INFO(get_logger(), "Starting LaneDetectorNode!");
 
     lane_detector_ = std::make_shared<LaneDetector>();
 
     auto video_path = this->declare_parameter<std::string>("video_path");
+
+    auto lower_boundary = this->declare_parameter<std::vector<int64>>("lower_boundary");
+    auto upper_boundary = this->declare_parameter<std::vector<int64>>("upper_boundary");
+    auto max_contour_area = this->declare_parameter<int64>("max_contour_area");
+    auto max_contour_distance = this->declare_parameter<double>("max_contour_distance");
+
+    lane_detector_->lower_boundary =
+      cv::Scalar(lower_boundary[0], lower_boundary[1], lower_boundary[2]);
+    lane_detector_->upper_boundary =
+      cv::Scalar(upper_boundary[0], upper_boundary[1], upper_boundary[2]);
+    lane_detector_->max_contour_area = max_contour_area;
+    lane_detector_->max_contour_distance = max_contour_distance;
 
     result_image_pub_ = this->create_publisher<sensor_msgs::msg::Image>("/lane_detection", 10);
 

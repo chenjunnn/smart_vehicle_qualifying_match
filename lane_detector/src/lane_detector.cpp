@@ -22,7 +22,7 @@ cv::Mat LaneDetector::preprocess(const cv::Mat & image)
   cv::cvtColor(roi, hls_image, cv::COLOR_BGR2HLS);
 
   cv::Mat bin_image;
-  cv::inRange(hls_image, cv::Scalar(90, 45, 50), cv::Scalar(120, 190, 200), bin_image);
+  cv::inRange(hls_image, lower_boundary, upper_boundary, bin_image);
 
   auto element = cv::getStructuringElement(cv::MORPH_ELLIPSE, cv::Size(8, 5));
   cv::morphologyEx(bin_image, bin_image, cv::MORPH_CLOSE, element);
@@ -49,7 +49,7 @@ std::vector<std::vector<cv::Point> > LaneDetector::getArrow(const cv::Mat & imag
     std::remove_if(
       contours_plus.begin(), contours_plus.end(),
       [&](const contour & contour) {
-        return contour.area > 12000 || contour.size() < 5 ||
+        return contour.area > max_contour_area || contour.size() < 5 ||
                (contour.bottom.y < image.rows / 2 && contour.area > 1000);
       }),
     contours_plus.end());
@@ -66,7 +66,7 @@ std::vector<std::vector<cv::Point> > LaneDetector::getArrow(const cv::Mat & imag
 
   vector<contour> arrows{last_arrow};
   for (size_t i = 1; i < contours_plus.size(); ++i) {
-    if (cv::norm(contours_plus[i].bottom - last_arrow.bottom) < 250) {
+    if (cv::norm(contours_plus[i].bottom - last_arrow.bottom) < max_contour_distance) {
       arrows.emplace_back(contours_plus[i]);
       last_arrow = contours_plus[i];
     }

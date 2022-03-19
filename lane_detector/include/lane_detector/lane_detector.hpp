@@ -4,6 +4,7 @@
 #ifndef LANE_DETECTOR__LANE_DETECTOR_HPP_
 #define LANE_DETECTOR__LANE_DETECTOR_HPP_
 
+#include <opencv2/core/types.hpp>
 #include <opencv2/opencv.hpp>
 
 // STL
@@ -18,6 +19,12 @@ public:
   cv::Mat preprocess(const cv::Mat & image);
 
   std::vector<std::vector<cv::Point> > getArrow(const cv::Mat & image);
+
+  cv::Scalar lower_boundary;
+  cv::Scalar upper_boundary;
+
+  int max_contour_area;
+  double max_contour_distance;
 
 private:
   struct contour : std::vector<cv::Point>

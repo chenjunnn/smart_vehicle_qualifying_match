@@ -1,0 +1,14 @@
+/lane_detector:
+  ros__parameters:
+    lower_boundary: 
+      - 90 # H
+      - 45 # L
+      - 50 # S
+    upper_boundary: 
+      - 120
+      - 190
+      - 200
+    
+    max_contour_area: 12000
+    max_contour_distance: 250.0
+    
