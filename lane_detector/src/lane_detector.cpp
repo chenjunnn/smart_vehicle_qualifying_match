@@ -49,7 +49,7 @@ std::vector<std::vector<cv::Point> > LaneDetector::getArrow(const cv::Mat & imag
     std::remove_if(
       contours_plus.begin(), contours_plus.end(),
       [&](const contour & contour) {
-        return contour.area > 10000 || contour.size() < 5 ||
+        return contour.area > 12000 || contour.size() < 5 ||
                (contour.bottom.y < image.rows / 2 && contour.area > 1000);
       }),
     contours_plus.end());

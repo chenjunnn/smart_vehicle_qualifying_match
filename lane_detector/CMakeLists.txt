@@ -27,10 +27,10 @@ ament_auto_add_library(${PROJECT_NAME} SHARED
   DIRECTORY src
 )
 
-# rclcpp_components_register_node(${PROJECT_NAME}
-#   PLUGIN rm_auto_aim::RgbDetectorNode
-#   EXECUTABLE rgb_detector_node
-# )
+rclcpp_components_register_node(${PROJECT_NAME}
+  PLUGIN lane_detector::LaneDetectorNode
+  EXECUTABLE lane_detector_node
+)
 
 #############
 ## Testing ##

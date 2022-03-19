@@ -43,7 +43,7 @@ TEST(test_detector, test_detect_video)
 
     auto end_time = std::chrono::steady_clock::now();
     auto latency =
-      std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+      std::chrono::duration_cast<std::chrono::nanoseconds>(end_time - start_time).count() / 1e6;
     cv::putText(
       frame, std::to_string(latency) + "ms", cv::Point(10, 50), cv::FONT_HERSHEY_SIMPLEX, 1.5,
       cv::Scalar(0, 0, 255), 2);
