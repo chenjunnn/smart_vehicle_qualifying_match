@@ -35,7 +35,7 @@ ros2 launch lane_detector detector.launch.py video_path:=${YOUR_VIDEO_PATH}
 
 ## 效果
 
-<iframe src="//player.bilibili.com/player.html?aid=297364975&bvid=BV1QF411s7LK&cid=552610933&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+https://www.bilibili.com/video/BV1QF411s7LK/
 
 ## 未完成事项
 
